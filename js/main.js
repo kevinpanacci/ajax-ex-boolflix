@@ -5,7 +5,11 @@ $(document).ready(function (){
     // miaBandiera = 'it';
     // flag.selectByTopLevelDomain(miaBandiera);
 
+    $('.card').mouseenter(function(){
+        $('.image-container').hide();
+        $('.overlay').fadeIn();
 
+    });
     $('.searchbar-button').click(function() {
         var nomeInserito = $('#searchbar').val();
         var apiBaseUrl = 'https://api.themoviedb.org/3';
@@ -33,6 +37,8 @@ $(document).ready(function (){
                             console.log(film.original_language);
                             console.log(film.vote_average);
                             console.log(film.poster_path);
+                            var titoloIta = film.title;
+                            var titoloOriginale = film.original_title;
                             var posterPath = film.poster_path;
                             var votoInDecimi = film.vote_average;
                             var dimensioneImmagine = 'w154';
@@ -86,7 +92,9 @@ $(document).ready(function (){
                             console.log(film.poster_path);
                             var votoInDecimi = film.vote_average;
                             var posterPath = film.poster_path;
-                            var dimensioneImmagine = 'w154';
+                            var titoloIta = film.name;
+                            var titoloOriginale = film.original_name;
+                            var dimensioneImmagine = 'w342';
                             var urlImmagine = "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath;
                             votoStelle(votoInDecimi);
                             creaBandiera();
