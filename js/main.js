@@ -32,7 +32,12 @@ $(document).ready(function (){
                             console.log(film.original_title);
                             console.log(film.original_language);
                             console.log(film.vote_average);
+                            console.log(film.poster_path);
+                            var posterPath = film.poster_path;
                             var votoInDecimi = film.vote_average;
+                            var dimensioneImmagine = 'w154';
+                            var urlImmagine = "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath;
+                            console.log(urlImmagine);
                             votoStelle(votoInDecimi);
                             creaBandiera();
                             function creaBandiera() {
@@ -78,7 +83,11 @@ $(document).ready(function (){
                             console.log(film.original_name);
                             console.log(film.original_language);
                             console.log(film.vote_average);
+                            console.log(film.poster_path);
                             var votoInDecimi = film.vote_average;
+                            var posterPath = film.poster_path;
+                            var dimensioneImmagine = 'w154';
+                            var urlImmagine = "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath;
                             votoStelle(votoInDecimi);
                             creaBandiera();
                             function creaBandiera() {
