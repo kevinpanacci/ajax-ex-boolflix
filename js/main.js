@@ -1,8 +1,15 @@
 $(document).ready(function (){
+
+    const parentElement = document.getElementById("bandiera");
+    const flag = new CountryFlag(parentElement);
+    miaBandiera = 'it';
+    flag.selectByTopLevelDomain(miaBandiera);
+
+
     $('.searchbar-button').click(function() {
         var nomeInserito = $('#searchbar').val();
-        // console.log(nomeInserito);
         var apiBaseUrl = 'https://api.themoviedb.org/3';
+
 // CHIAMATA ALL'API PER I FILM
         $.ajax({
             url: apiBaseUrl + '/search/movie',
@@ -27,7 +34,12 @@ $(document).ready(function (){
                             console.log(film.vote_average);
                             var votoInDecimi = film.vote_average;
                             votoStelle(votoInDecimi);
+                            // var miaBandiera = film.original_language;
+                            // const parentElement = document.getElementById("bandiera");
+                            // const flag = new CountryFlag(parentElement);
+                            // flag.selectByTopLevelDomain(miaBandiera);
                     }
+
                     function votoStelle(votoInDecimi) {
                         var stelle = Math.ceil(votoInDecimi / 2);
                         console.log(stelle);
