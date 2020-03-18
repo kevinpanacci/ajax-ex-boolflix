@@ -1,9 +1,9 @@
 $(document).ready(function (){
 
-    const parentElement = document.getElementById("bandiera");
-    const flag = new CountryFlag(parentElement);
-    miaBandiera = 'it';
-    flag.selectByTopLevelDomain(miaBandiera);
+    // const parentElement = document.getElementById("bandiera");
+    // const flag = new CountryFlag(parentElement);
+    // miaBandiera = 'it';
+    // flag.selectByTopLevelDomain(miaBandiera);
 
 
     $('.searchbar-button').click(function() {
@@ -34,18 +34,21 @@ $(document).ready(function (){
                             console.log(film.vote_average);
                             var votoInDecimi = film.vote_average;
                             votoStelle(votoInDecimi);
-                            // var miaBandiera = film.original_language;
-                            // const parentElement = document.getElementById("bandiera");
-                            // const flag = new CountryFlag(parentElement);
-                            // flag.selectByTopLevelDomain(miaBandiera);
-                    }
-
-                    function votoStelle(votoInDecimi) {
-                        var stelle = Math.ceil(votoInDecimi / 2);
-                        console.log(stelle);
-                        var stellePercentuale = ((stelle / 5) * 100);
-                        console.log(stellePercentuale);
-                        $('.stars-inner').css('width', stellePercentuale +'%')
+                            creaBandiera();
+                            function creaBandiera() {
+                                var miaBandiera = film.original_language;
+                                const parentElement = document.getElementById("bandiera");
+                                const flag = new CountryFlag(parentElement);
+                                flag.selectByTopLevelDomain(miaBandiera);
+                                if (miaBandiera == 'en') {
+                                    flag.selectByTopLevelDomain('uk');
+                                }
+                            }
+                            function votoStelle(votoInDecimi) {
+                                var stelle = Math.ceil(votoInDecimi / 2);
+                                var stellePercentuale = ((stelle / 5) * 100);
+                                $('.stars-inner').css('width', stellePercentuale +'%')
+                            }
                     }
                 }
             },
@@ -77,14 +80,23 @@ $(document).ready(function (){
                             console.log(film.vote_average);
                             var votoInDecimi = film.vote_average;
                             votoStelle(votoInDecimi);
+                            creaBandiera();
+                            function creaBandiera() {
+                                var miaBandiera = film.original_language;
+                                const parentElement = document.getElementById("bandiera");
+                                const flag = new CountryFlag(parentElement);
+                                flag.selectByTopLevelDomain(miaBandiera);
+                                if (miaBandiera == 'en') {
+                                    flag.selectByTopLevelDomain('uk');
+                                }
+                            }
+                            function votoStelle(votoInDecimi) {
+                                var stelle = Math.ceil(votoInDecimi / 2);
+                                var stellePercentuale = ((stelle / 5) * 100);
+                                $('.stars-inner').css('width', stellePercentuale +'%')
+                            }
                     }
-                    function votoStelle(votoInDecimi) {
-                        var stelle = Math.ceil(votoInDecimi / 2);
-                        console.log(stelle);
-                        var stellePercentuale = ((stelle / 5) * 100);
-                        console.log(stellePercentuale);
-                        $('.stars-inner').css('width', stellePercentuale +'%')
-                    }
+
                 }
             },
             error: function (err) {

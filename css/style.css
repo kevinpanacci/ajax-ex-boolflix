@@ -27,6 +27,12 @@ button {
   width: 0px;
 }
 
+#bandiera {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+}
+
 .stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
   color: #f8ce0b;
