@@ -55,10 +55,11 @@ body {
     display: flex;
     flex-basis: 200px;
     flex-direction:column;
-    /* background-color: black; */
     border-radius: 5%;
     margin: 5px;
     border: 1px solid white;
+    color: white;
+
 }
 
 span.white{
@@ -111,4 +112,5 @@ span.white{
     display: none;
     flex-direction: column;
     margin: 15px 5px;
+    overflow-y: hidden;
 }

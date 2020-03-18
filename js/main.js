@@ -19,15 +19,12 @@ var apiBaseUrl = 'https://api.themoviedb.org/3';
                 var films = data.results;
                 var source = $('#card-template').html();
                 var cardTemplate = Handlebars.compile(source);
-                cicloFilm(films,cardTemplate);
+                cicloFilm(films, cardTemplate);
             },
             error: function (err) {
                 alert('BOOM');
             }
         });
-
-
-
 // CHIAMATA ALL'API PER LE SERIE TV
         $.ajax({
             url: apiBaseUrl + '/search/tv',
@@ -40,9 +37,9 @@ var apiBaseUrl = 'https://api.themoviedb.org/3';
             success: function(data){
                 console.log(data);
                 var series = data.results;
-                cicloSerie(series);
                 var source = $('#card-template').html();
                 var cardTemplate = Handlebars.compile(source);
+                cicloSerie(series, cardTemplate);
             },
             error: function (err) {
                 alert('BOOM');
@@ -64,17 +61,20 @@ function attivax(el,scelta){
     }
 
 }
-function cicloSerie(listaFilm) {
+function cicloSerie(listaFilm, cardTemplate) {
     for (var i = 0; i < listaFilm.length; i++) {
+        var obj = {};
         var film = listaFilm[i];
         var votoInDecimi = film.vote_average;
         var posterPath = film.poster_path;
-        var titoloIta = film.name;
-        var titoloOriginale = film.original_name;
-        var overview = film.overview;
+        obj.titoloIta = film.name;
+        obj.titoloOriginale = film.original_name;
+        obj.overview = film.overview;
         var dimensioneImmagine = 'w342';
-        var urlImmagine = "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath;
-        var voto2=votoStelle2(votoInDecimi);
+        obj.urlImmagine = "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath;
+        obj.voto2=votoStelle2(votoInDecimi);
+        var html = cardTemplate(obj);
+        $('.container-card').append(html);
 
         // creaBandiera();
         // function creaBandiera() {
@@ -101,9 +101,9 @@ function cicloFilm(listaFilm,cardTemplate) {
         var dimensioneImmagine = 'w154';
         obj.urlImmagine = "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath;
         obj.voto2=votoStelle2(votoInDecimi);
-        // creaBandiera();
         var html = cardTemplate(obj);
         $('.container-card').append(html);
+        // creaBandiera();
 
         // function creaBandiera() {
         //     var miaBandiera = film.original_language;
