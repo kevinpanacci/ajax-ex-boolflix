@@ -22,28 +22,29 @@
             </div>
         </header>
         <main>
-            <div class="container">
-                <div class="card">
+            <div class="container-card">
+                <div class="card"></div>
 
-                </div>
             </div>
         </main>
 
 
 
         <script id="card-template" type="text/x-handlebars-template">
-            <div class="card">
+            <div class="card" onmouseover="attivax($(this),true)" onmouseout="attivax($(this),false)">
                 <div class="overlay">
-                    <p><b>Titolo:</b> ciao</p>
-                    <p><b>Titolo Originale:</b> ciao</p>
-                    <p><b>Overview:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco  </p>
-                    <div class="stars-outer">
-                        <div class="stars-inner"></div>
-                    </div>
-                    <div id="bandiera"></div>
+                    <p><span class="white">Titolo:</span> {{titoloIta}}</p>
+                    <p><span class="white">Titolo Originale:</span> {{titoloOriginale}}</p>
+                    <div><span class="white">Voto:</span><div class="stars-outer">
+                        <div class="stars-inner" style="width:{{voto2}}%"></div>
+                    </div></div>
+                    <p><span>Overview:</span> {{overview}}</p>
+
+
+                    <!-- <div id="bandiera"></div> -->
                 </div>
                 <div class="image-container">
-                    <img src="https://image.tmdb.org/t/p/w185/s2VDcsMh9ZhjFUxw77uCFDpTuXp.jpg" alt="">
+                    <img src="{{urlImmagine}}" alt="">
                 </div>
             </div>
         </script>
