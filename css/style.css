@@ -51,7 +51,7 @@ body {
 
 .card {
     height: 300px;
-    padding: 10px;
+    padding: 5px;
     display: flex;
     flex-basis: 200px;
     flex-direction:column;
@@ -59,7 +59,6 @@ body {
     margin: 5px;
     border: 1px solid white;
     color: white;
-
 }
 
 span.white{

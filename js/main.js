@@ -59,35 +59,39 @@ function attivax(el,scelta){
 }
 function cicloSerie(listaFilm, cardTemplate) {
     for (var i = 0; i < listaFilm.length; i++) {
-        var obj = {};
         var film = listaFilm[i];
         var votoInDecimi = film.vote_average;
         var posterPath = film.poster_path;
-        obj.titoloIta = film.name;
-        obj.titoloOriginale = film.original_name;
-        obj.overview = film.overview;
         var dimensioneImmagine = 'w342';
-        obj.urlImmagine = "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath;
-        obj.voto2=votoStelle2(votoInDecimi);
+        var obj = {
+            titoloIta: film.name,
+            titoloOriginale: film.original_name,
+            overview: film.overview,
+            urlImmagine: "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath,
+            voto2: votoStelle2(votoInDecimi)
+        };
         var html = cardTemplate(obj);
         $('.container-card').append(html);
+        // creaBandiera(listaFilm);
     }
 }
 
 function cicloFilm(listaFilm,cardTemplate) {
     for (var i = 0; i < listaFilm.length; i++) {
-        var obj={};
         var film = listaFilm[i];
-        obj.titoloIta = film.title;
-        obj.titoloOriginale = film.original_title;
         var posterPath = film.poster_path;
-        var votoInDecimi = film.vote_average;
-        obj.overview = film.overview;
         var dimensioneImmagine = 'w154';
-        obj.urlImmagine = "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath;
-        obj.voto2=votoStelle2(votoInDecimi);
+        var votoInDecimi = film.vote_average;
+        var obj = {
+            titoloIta: film.title,
+            titoloOriginale: film.original_title,
+            overview: film.overview,
+            urlImmagine: "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath,
+            voto2: votoStelle2(votoInDecimi)
+        };
         var html = cardTemplate(obj);
         $('.container-card').append(html);
+        // creaBandiera(listaFilm);
     }
 }
 
@@ -97,8 +101,8 @@ function votoStelle2(votoInDecimi) {
     return stellePercentuale;
 }
 
-// creaBandiera();
-// function creaBandiera() {
+
+// function creaBandiera(film) {
 //     var miaBandiera = film.original_language;
 //     const parentElement = document.getElementById("bandiera");
 //     const flag = new CountryFlag(parentElement);
