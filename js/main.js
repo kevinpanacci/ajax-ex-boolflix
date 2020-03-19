@@ -46,10 +46,6 @@ var apiBaseUrl = 'https://api.themoviedb.org/3';
             }
         });
     });
-    // $('.card').mouseenter(function(){
-    //     $('.image-container').hide();
-    //     $('.overlay').fadeIn();
-    // });
 });
 function attivax(el,scelta){
     if (scelta) {
@@ -75,17 +71,6 @@ function cicloSerie(listaFilm, cardTemplate) {
         obj.voto2=votoStelle2(votoInDecimi);
         var html = cardTemplate(obj);
         $('.container-card').append(html);
-
-        // creaBandiera();
-        // function creaBandiera() {
-        //     var miaBandiera = film.original_language;
-        //     const parentElement = document.getElementById("bandiera");
-        //     const flag = new CountryFlag(parentElement);
-        //     flag.selectByTopLevelDomain(miaBandiera);
-        //     if (miaBandiera == 'en') {
-        //         flag.selectByTopLevelDomain('uk');
-        //     }
-        // }
     }
 }
 
@@ -103,22 +88,6 @@ function cicloFilm(listaFilm,cardTemplate) {
         obj.voto2=votoStelle2(votoInDecimi);
         var html = cardTemplate(obj);
         $('.container-card').append(html);
-        // creaBandiera();
-
-        // function creaBandiera() {
-        //     var miaBandiera = film.original_language;
-        //     const parentElement = document.getElementById("bandiera");
-        //     const flag = new CountryFlag(parentElement);
-        //     flag.selectByTopLevelDomain(miaBandiera);
-        //     if (miaBandiera == 'en') {
-        //         flag.selectByTopLevelDomain('uk');
-        //     }
-        // }
-        // function votoStelle(votoInDecimi) {
-        //     var stelle = Math.ceil(votoInDecimi / 2);
-        //     var stellePercentuale = ((stelle / 5) * 100);
-        //     $('.stars-inner').css('width', stellePercentuale +'%')
-        // }
     }
 }
 
@@ -127,3 +96,14 @@ function votoStelle2(votoInDecimi) {
     var stellePercentuale = ((stelle / 5) * 100);
     return stellePercentuale;
 }
+
+// creaBandiera();
+// function creaBandiera() {
+//     var miaBandiera = film.original_language;
+//     const parentElement = document.getElementById("bandiera");
+//     const flag = new CountryFlag(parentElement);
+//     flag.selectByTopLevelDomain(miaBandiera);
+//     if (miaBandiera == 'en') {
+//         flag.selectByTopLevelDomain('uk');
+//     }
+// }
