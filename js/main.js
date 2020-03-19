@@ -47,13 +47,14 @@ var apiBaseUrl = 'https://api.themoviedb.org/3';
         });
     });
 });
-function attivax(el,scelta){
+
+function attivaOverlay(questoElemento, scelta){
     if (scelta) {
-        el.find('.image-container').hide();
-        el.find('.overlay').show();
+        questoElemento.find('.image-container').hide();
+        questoElemento.find('.overlay').show();
     } else {
-        el.find('.image-container').show();
-        el.find('.overlay').hide();
+        questoElemento.find('.image-container').show();
+        questoElemento.find('.overlay').hide();
     }
 
 }
