@@ -2,12 +2,12 @@ $(document).ready(function (){
     var apiBaseUrl = 'https://api.themoviedb.org/3';
     $('.searchbar-button').click(function() {
         var nomeInserito = $('#searchbar').val();
+        $('#searchbar').empty();
 
 
 // CHIAMATA ALL'API PER I FILM
         $.ajax({
             url: apiBaseUrl + '/search/movie',
-            // url: apiBaseUrl + '/search/tv',
             data: {
                 api_key: '6d0fd5c96501c78452d6d55bbbef0583',
                 query: nomeInserito,
@@ -100,7 +100,6 @@ function votoStelle2(votoInDecimi) {
     var stellePercentuale = (votoInDecimi * 10);
     return stellePercentuale;
 }
-
 
 function creaBandiera(film) {
     var miaBandiera = film.original_language;
