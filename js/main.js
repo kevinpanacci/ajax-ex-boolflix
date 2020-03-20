@@ -1,5 +1,5 @@
 $(document).ready(function (){
-var apiBaseUrl = 'https://api.themoviedb.org/3';
+    var apiBaseUrl = 'https://api.themoviedb.org/3';
     $('.searchbar-button').click(function() {
         var nomeInserito = $('#searchbar').val();
 
@@ -69,11 +69,11 @@ function cicloSerie(listaFilm, cardTemplate) {
             titoloOriginale: film.original_name,
             overview: film.overview,
             urlImmagine: "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath,
-            voto2: votoStelle2(votoInDecimi)
+            voto2: votoStelle2(votoInDecimi),
+            bandiera: creaBandiera(film)
         };
         var html = cardTemplate(obj);
         $('.container-card').append(html);
-        // creaBandiera(listaFilm);
     }
 }
 
@@ -88,27 +88,24 @@ function cicloFilm(listaFilm,cardTemplate) {
             titoloOriginale: film.original_title,
             overview: film.overview,
             urlImmagine: "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath,
-            voto2: votoStelle2(votoInDecimi)
+            voto2: votoStelle2(votoInDecimi),
+            bandiera: creaBandiera(film)
         };
         var html = cardTemplate(obj);
         $('.container-card').append(html);
-        // creaBandiera(listaFilm);
     }
 }
 
 function votoStelle2(votoInDecimi) {
-    var stelle = Math.ceil(votoInDecimi / 2);
-    var stellePercentuale = ((stelle / 5) * 100);
+    var stellePercentuale = (votoInDecimi * 10);
     return stellePercentuale;
 }
 
 
-// function creaBandiera(film) {
-//     var miaBandiera = film.original_language;
-//     const parentElement = document.getElementById("bandiera");
-//     const flag = new CountryFlag(parentElement);
-//     flag.selectByTopLevelDomain(miaBandiera);
-//     if (miaBandiera == 'en') {
-//         flag.selectByTopLevelDomain('uk');
-//     }
-// }
+function creaBandiera(film) {
+    var miaBandiera = film.original_language;
+    if (miaBandiera == 'en') {
+        var miaBandiera = 'uk';
+    }
+    return miaBandiera;
+}

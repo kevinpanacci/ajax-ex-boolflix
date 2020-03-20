@@ -95,7 +95,7 @@ span.white{
     width: 0px;
 }
 
-#bandiera {
+.bandiera {
     width: 32px;
     height: 32px;
     overflow: hidden;
