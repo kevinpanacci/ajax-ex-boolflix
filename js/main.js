@@ -1,6 +1,7 @@
 $(document).ready(function (){
     var apiBaseUrl = 'https://api.themoviedb.org/3';
     $('.searchbar-button').click(function() {
+        $('.container-card').empty(); //serve a svuotare il container delel card
         var nomeInserito = $('#searchbar').val();
         $('#searchbar').empty();
 
