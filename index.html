@@ -29,13 +29,15 @@
         <script id="card-template" type="text/x-handlebars-template">
             <div class="card" onmouseover="attivaOverlay($(this),true)" onmouseout="attivaOverlay($(this),false)">
                 <div class="overlay">
-                    <p><span class="white">Titolo:</span> {{titoloIta}}</p>
-                    <p><span class="white">Titolo Originale:</span> {{titoloOriginale}}</p>
+                    <div><span class="white">Titolo:</span> {{titoloIta}}</div>
+                    <div><span class="white">Titolo Originale:</span> {{titoloOriginale}}
+                    <div class="country-flag"><img src="https://www.countryflags.io/{{bandiera}}/shiny/16.png">
+                    </div></div>
                     <div class=""><span class="white">Voto:</span><div class="stars-outer">
                         <div class="stars-inner" style="width:{{voto2}}%"></div>
                     </div></div>
                     <p><span>Overview:</span> {{overview}}</p>
-                    <img src="https://www.countryflags.io/{{bandiera}}/flat/64.png">
+
                 </div>
                 <div class="image-container">
                     <img src="{{urlImmagine}}" alt="">

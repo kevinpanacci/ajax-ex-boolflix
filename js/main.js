@@ -105,7 +105,7 @@ function votoStelle2(votoInDecimi) {
 function creaBandiera(film) {
     var miaBandiera = film.original_language;
     if (miaBandiera == 'en') {
-        var miaBandiera = 'uk';
+        var miaBandiera = 'gb';
     }
     return miaBandiera;
 }

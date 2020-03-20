@@ -61,13 +61,17 @@ body {
     color: white;
 }
 
+.card img {
+    width: 100%;
+}
+
+.card .country-flag {
+    width: 16px;
+}
+
 span.white{
     color:#fff;
     font-weight: bold;
-}
-
-.card img {
-    width: 100%;
 }
 
 .searchbar-button {
@@ -93,12 +97,6 @@ span.white{
     white-space: nowrap;
     overflow: hidden;
     width: 0px;
-}
-
-.bandiera {
-    width: 32px;
-    height: 32px;
-    overflow: hidden;
 }
 
 .stars-inner::before {
