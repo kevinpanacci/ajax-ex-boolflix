@@ -1,5 +1,7 @@
 $(document).ready(function (){
     var apiBaseUrl = 'https://api.themoviedb.org/3';
+    var source = $('#card-template').html();
+    var cardTemplate = Handlebars.compile(source);
     $('.searchbar-button').click(function() {
         $('.container-card').empty(); //serve a svuotare il container delel card
         var nomeInserito = $('#searchbar').val();
@@ -18,8 +20,6 @@ $(document).ready(function (){
             success: function(data){
                 console.log(data);
                 var films = data.results;
-                var source = $('#card-template').html();
-                var cardTemplate = Handlebars.compile(source);
                 cicloFilm(films, cardTemplate);
             },
             error: function (err) {
@@ -38,8 +38,6 @@ $(document).ready(function (){
             success: function(data){
                 console.log(data);
                 var series = data.results;
-                var source = $('#card-template').html();
-                var cardTemplate = Handlebars.compile(source);
                 cicloSerie(series, cardTemplate);
             },
             error: function (err) {
