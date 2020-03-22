@@ -1,49 +1,10 @@
 $(document).ready(function (){
-    var apiBaseUrl = 'https://api.themoviedb.org/3';
-    var source = $('#card-template').html();
-    var cardTemplate = Handlebars.compile(source);
     $('.searchbar-button').click(function() {
         $('.container-card').empty(); //serve a svuotare il container delel card
         var nomeInserito = $('#searchbar').val();
         $('#searchbar').empty();
-
-
-// CHIAMATA ALL'API PER I FILM
-        $.ajax({
-            url: apiBaseUrl + '/search/movie',
-            data: {
-                api_key: '6d0fd5c96501c78452d6d55bbbef0583',
-                query: nomeInserito,
-                language: 'it-IT'
-            },
-            method: 'GET',
-            success: function(data){
-                console.log(data);
-                var films = data.results;
-                cicloFilm(films, cardTemplate);
-            },
-            error: function (err) {
-                alert('BOOM');
-            }
-        });
-// CHIAMATA ALL'API PER LE SERIE TV
-        $.ajax({
-            url: apiBaseUrl + '/search/tv',
-            data: {
-                api_key: '6d0fd5c96501c78452d6d55bbbef0583',
-                query: nomeInserito,
-                language: 'it-IT'
-            },
-            method: 'GET',
-            success: function(data){
-                console.log(data);
-                var series = data.results;
-                cicloSerie(series, cardTemplate);
-            },
-            error: function (err) {
-                alert('BOOM');
-            }
-        });
+    filmTv("movie");
+    filmTv("tv");
     });
 });
 
@@ -57,39 +18,31 @@ function attivaOverlay(questoElemento, scelta){
     }
 
 }
-function cicloSerie(listaFilm, cardTemplate) {
-    for (var i = 0; i < listaFilm.length; i++) {
-        var film = listaFilm[i];
-        var votoInDecimi = film.vote_average;
-        var posterPath = film.poster_path;
-        var dimensioneImmagine = 'w342';
-        var obj = {
-            titoloIta: film.name,
-            titoloOriginale: film.original_name,
-            overview: film.overview,
-            urlImmagine: "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath,
-            voto2: votoStelle2(votoInDecimi),
-            bandiera: creaBandiera(film)
-        };
-        var html = cardTemplate(obj);
-        $('.container-card').append(html);
-    }
-}
 
-function cicloFilm(listaFilm,cardTemplate) {
+function cicloGenerico(listaFilm, cardTemplate, tipo) {
     for (var i = 0; i < listaFilm.length; i++) {
         var film = listaFilm[i];
         var posterPath = film.poster_path;
         var dimensioneImmagine = 'w154';
         var votoInDecimi = film.vote_average;
         var obj = {
-            titoloIta: film.title,
-            titoloOriginale: film.original_title,
+            titoloIta:"",
+            titoloOriginale:"",
             overview: film.overview,
             urlImmagine: "https://image.tmdb.org/t/p/" + dimensioneImmagine + posterPath,
             voto2: votoStelle2(votoInDecimi),
             bandiera: creaBandiera(film)
         };
+        if (posterPath == 'null' || posterPath == null) {
+            obj.urlImmagine = "no-image.jpg";
+        }
+        if(tipo == "tv") {
+            obj.titoloIta = film.title;
+            obj.titoloOriginale = film.original_title;
+        }else {
+            obj.titoloIta = film.title;
+            obj.titoloOriginale = film.original_title;
+        }
         var html = cardTemplate(obj);
         $('.container-card').append(html);
     }
@@ -106,4 +59,28 @@ function creaBandiera(film) {
         var miaBandiera = 'gb';
     }
     return miaBandiera;
+}
+
+function filmTv(tipo){
+    var source = $('#card-template').html();
+    var cardTemplate = Handlebars.compile(source);
+    var apiBaseUrl = 'https://api.themoviedb.org/3';
+    var nomeInserito = $('#searchbar').val();
+    $.ajax({
+        url: apiBaseUrl + '/search/' + tipo,
+        data: {
+            api_key: '6d0fd5c96501c78452d6d55bbbef0583',
+            query: nomeInserito,
+            language: 'it-IT'
+        },
+        method: 'GET',
+        success: function(data){
+            // console.log(data);
+            var lista = data.results;
+            cicloGenerico(lista, cardTemplate,tipo);
+        },
+        error: function (err) {
+            alert('BOOM');
+        }
+    });
 }
